@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Image Transition Frames</title>
+<style>
+  .frame {
+    margin: 20px;
+    float: left;
+    position: relative;
+    overflow: hidden;
+  }
+  .rectangle-frame, .circle-frame, .oval-frame, .triangle-frame {
+    transition: transform 1s ease;
+  }
+  .rectangle-frame {
+    width: 300px;
+    height: 200px;
+  }
+  .frame {
+  margin: 20px;
+  float: left;
+  position: relative;
+  /* overflow: hidden; */ /* Consider removing or adjusting this property */
+}
+
+.circle-frame {
+  width: 200px;
+  height: 200px;
+  border-radius: 50%;
+  /* Add overflow hidden here if you want to clip the content to a circle */
+  overflow: hidden;
+}
+
+.circle-frame img {
+  display: block;
+  width: 100%; /* Adjust as needed to maintain aspect ratio */
+  height: auto; /* Adjust as needed to maintain aspect ratio */
+}
+
+  .oval-frame {
+    width: 300px;
+    height: 200px;
+    border-radius: 150px / 100px;
+  }
+ .triangle-frame {
+  width: 200px; /* Set a width for the triangle */
+  height: 200px; /* Set a height for the triangle */
+  clip-path: polygon(50% 0%, 0% 100%, 100% 100%);
+}
+
+.triangle-frame img {
+  width: 100%;
+  height: auto;
+  display: block; /* Ensure the image is a block-level element */
+}
+
+  img {
+    width: 100%;
+    height: auto;
+    position: absolute;
+    top: 0;
+    left: 0;
+  }
+body {
+  background-color: black; /* Set the background color of the body to black */
+}
+
+h2 {
+  text-align: center; /* Center the h2 element */
+  color: pink; /* Set the text color of h2 to pink */
+}
+
+.container {
+width: 360px; /* Set the width of the container */
+  height: 331px; /* Set the height of the container */
+  background-color: pink; /* Set the background color of the container to pink */
+  padding: 10px; /* Add some padding around the content */
+  margin-bottom: 20px; /* Add some space below the container */
+ display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 10px; /* This creates space between the h4 and div */
+}
+
+#imageDisplayArea {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+
+.center-input {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.center-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh; /* This sets the height of the container to the full viewport height */
+}
+
+</style>
+</head>
+<body>
+<br><br><br>
+<h2 >Image Transition</h2>
+<br>
+<input type="file" id="imageUpload" accept="image/*" class="center-input">
+<br><br><br>
+
+<div style="text-align:center;">
+<script type="text/javascript" src="https://cdnjs.buymeacoffee.com/1.0.0/button.prod.min.js" data-name="bmc-button" data-slug="anusanta" data-color="#fe8bd9" data-emoji=""  data-font="Arial" data-text="Buy me a coffee" data-outline-color="#000000" data-font-color="#000000" data-coffee-color="#FFDD00" ></script>
+</div>
+<br><br>
+<div id="imageDisplayArea">
+<div class="container">
+  <h4 class="center-input">Rectangle Frame</h4>
+  <div class="frame rectangle-frame" class="center-input"><img src="" alt="Rectangle Frame"></div>
+</div>
+
+<div class="container">
+  <h4 class="center-input">Circle Frame</h4>
+  <div class="frame circle-frame" class="center-input"><img src="" alt="Circle Frame"></div>
+</div>
+
+<div class="container">
+  <h4 class="center-input">Oval Frame</h4>  
+  <div class="frame oval-frame" class="center-input"><img src="" alt="Oval Frame"></div>
+</div>
+
+<div class="container">
+  <h4 class="center-input">Triangle Frame</h4>  
+  <div class="frame triangle-frame" class="center-input"><img src="" alt="Triangle Frame"></div>
+</div>
+</div>
+
+<script>
+  document.getElementById('imageUpload').addEventListener('change', function(event) {
+    var reader = new FileReader();
+    reader.onload = function() {
+      var output = document.querySelectorAll('img');
+      output.forEach(function(img) {
+        img.src = reader.result;
+      });
+    };
+    reader.readAsDataURL(event.target.files[0]);
+  });
+</script>
+
+</body>
+</html>
